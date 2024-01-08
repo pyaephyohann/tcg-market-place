@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
 
-function App() {
+const App = () => {
+  const [datas, setDatas] = useState([]);
+
+  useEffect(() => {
+    fetchdatas();
+  }, []);
+
+  const fetchdatas = async () => {
+    const respone = await fetch("https://api.pokemontcg.io/v2/cards", {
+      headers: {
+        "X-Api-Key": "517542de-22c9-426b-9b1d-4e9b3765f9ed",
+      },
+    });
+    const responseJson = await respone.json();
+    console.log("hello", responseJson);
+    setDatas(responseJson.data);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="text-primary">
+      <div>
+        {datas.map((data: any) => {
+          return (
+            <div key={data.id}>
+              <img src={data.images.large} alt={data.code} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
