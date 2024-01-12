@@ -7,8 +7,11 @@ module.exports = {
         primary: "#FDCE29",
         secondary: "#298BFD",
         tartiary: "#FD2929",
+        background: "#FFFFFF",
+        quaternary: "#1D1C1C",
+        success: "#5DDD48",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

@@ -38,15 +38,17 @@ export const fetchAppData = createAsyncThunk(
 
 export const selectApp = (state: RootState) => state.app;
 export const selectDatas = (state: RootState) => state.datas.items;
+export const selectCart = (state: RootState) => state.cart;
 
 export const appData = createSelector(
-  [selectApp, selectDatas],
-  (app, datas) => {
+  [selectApp, selectDatas, selectCart],
+  (app, datas, cart) => {
     return {
       isLoading: app.isLoading,
       isInit: app.init,
       app,
       datas,
+      cart,
     };
   }
 );

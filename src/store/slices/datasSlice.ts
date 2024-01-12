@@ -8,7 +8,7 @@ interface DatasState {
 
 const initialState: DatasState = {
   isLoading: false,
-  items: null,
+  items: [],
   error: null,
 };
 
